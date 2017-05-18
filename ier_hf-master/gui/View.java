@@ -94,7 +94,9 @@ public class View extends JFrame {
     private class LoginActLis implements ActionListener{
         public void actionPermormed(ActionEvent e)
         {
-
+            if (logbtn.getText()=="Belépés"){
+                if (idtf.Text)
+            }
         }
 
     }
