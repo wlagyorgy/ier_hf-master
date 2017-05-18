@@ -36,27 +36,7 @@ public class View extends JFrame {
     JTextField idtf;
     JLabel idlb;
 
-    /*
-    JLabel freespacel;
-    JLabel textfreespacel;
-    JPanel downhalf;
 
-    JComboBox carplatecb;
-    JComboBox happeningcb;
-    JButton notifbtn;
-    JButton emergencybtn;
-    JButton floodbtn;
-    JButton firebtn;
-    DefaultComboBoxModel model;
-    ArrayList<Car> cars;
-    int[] places;
-    String[] problems = {"lopas", "muszaki"};
-    Environment environment;
-
-    int weirdthingplace;
-    String weirdthing;
-    Car problem;
-*/
     public View(Environment env, int free) {
         initComponents();
         environment = env;
@@ -75,6 +55,7 @@ public class View extends JFrame {
         setVisible(true);
     }
 
+    /*
     private class CarinbtnActLis implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (carplatetf.getText().length() > 0) {
@@ -83,13 +64,7 @@ public class View extends JFrame {
         }
     }
 
-    private class CaroutbtnActLis implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            if (carplatetf.getText().length() > 0) {
-                environment.addPercept(Literal.parseLiteral("car_out"));
-            }
-        }
-    }
+*/
 
     private class LoginActLis implements ActionListener{
         public void actionPermormed(ActionEvent e)
@@ -100,17 +75,8 @@ public class View extends JFrame {
         }
 
     }
-    private class NotifActLis implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            String car = (String) carplatecb.getSelectedItem();
-            String prob = (String) happeningcb.getSelectedItem();
-            if ((car != null) && (prob != null)) {
-                weirdthingplace = Integer.parseInt(car.split(" ")[0]);
-                weirdthing = prob;
-                environment.addPercept(Literal.parseLiteral("weird_thing"));
-            }
-        }
-    }
+
+
 
     public int getWeirdthingplace() {
         return weirdthingplace;
@@ -132,24 +98,14 @@ public class View extends JFrame {
         result.put("thing", weirdthing);
         return result;
     }
-
+/*
     private class EmergencyActLis implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             environment.addPercept(Literal.parseLiteral("emergency"));
         }
     }
 
-    private class FloodActLis implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            environment.addPercept(Literal.parseLiteral("flood"));
-        }
-    }
-
-    private class FireActLis implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            environment.addPercept(Literal.parseLiteral("fire"));
-        }
-    }
+  */
 
     public void AddActualCarplate() {
         AddCarplate(carplatetf.getText());
@@ -224,6 +180,8 @@ public class View extends JFrame {
         textfreespacel.setText(String.valueOf(spaces));
     }
 
+
+    //a panel bal oldalának inicializálása
     private void initleftpnl() {
         leftpnl=new JPanel();
         idlb=new JLabel("Adja meg a kártyaszámát!");
