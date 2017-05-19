@@ -6,7 +6,7 @@
 
 /* Plans */
 
-+log_in <- hello.
++log_in <- decision.
 +denied <- .print("Authentication failed").
 +let_in <- .print("Authentication successful."); show_buttons.
 +log_out <- .print("GoodBye!").

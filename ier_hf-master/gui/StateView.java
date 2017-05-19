@@ -27,7 +27,7 @@ public class StateView extends JFrame {
     JButton leavebtn;
 
     User activeUser;
-    String trainingType;
+    public String trainingType;
     int counter;
     int actualWeight;
     Environment env;
@@ -48,7 +48,7 @@ public class StateView extends JFrame {
 
     public void initComponents() {
         //elindul a timer
-        weights.clear();
+
         tStart=System.currentTimeMillis();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //we need this
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -101,37 +101,37 @@ public class StateView extends JFrame {
             try {
                 Integer.parseInt(weighttf.getText().toString());
                 if (actualWeight != Integer.parseInt(weighttf.getText().toString())) {
-                    weights.put(actualWeight, counter);
+                    if ( counter!=0) weights.put(actualWeight, counter);
                     counter = 0;
                     actualWeight = Integer.parseInt(weighttf.getText().toString());
                 }
                 counter++;
-                env.getLogger().info(String.valueOf(counter));
+
                 counterlb.setText(Integer.toString(counter));
             } catch(Exception ex) {
             }
         }
     }
-    public StateView stateClass(){
-        return this;
-    }
+
     private class LeaveActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-
+            if ( counter!=0) weights.put(actualWeight, counter);
             tStop=System.currentTimeMillis();
             long s=tStop-tStart;
             eTime =s/60000.0;
             env.addPercept(Literal.parseLiteral("leave_place"));
 
             
-            dispatchEvent(new WindowEvent(stateClass(), WindowEvent.WINDOW_CLOSING));
+
         }
     }
     public int getMaxWeight(){
         Integer max = 0;
         for(Integer key: weights.keySet()){
             if(max<key) max = key;
+
         }
+      
         return max;
     }
     public int getSerialMaxWeight(){

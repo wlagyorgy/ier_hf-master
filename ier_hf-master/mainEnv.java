@@ -101,6 +101,7 @@ public class mainEnv extends Environment {
             display.hideRightPanel();
         }else if (action.getFunctor().equals("refresh")){
             refresh(display.getMax(), display.getSerial(), display.getTime(), display.getTtype());
+            display.closestateview();
         }
         return true;
     }

@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 
 public class View extends JFrame {
@@ -52,6 +53,9 @@ public class View extends JFrame {
 
     public int getSerial(){
         return sv.getSerialMaxWeight();
+    }
+    public void closestateview(){
+        sv.dispatchEvent(new WindowEvent(sv, WindowEvent.WINDOW_CLOSING));
     }
 
     public double getTime(){
@@ -123,7 +127,7 @@ public class View extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             String name = "Triceps";
-            StateView sv= new StateView(env,name,activeUser);
+            sv= new StateView(env,name,activeUser);
             sv.setSize(600,300);
         }
     }
@@ -132,7 +136,7 @@ public class View extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             String name = "Chest";
-            StateView sv= new StateView(env,name,activeUser);
+            sv= new StateView(env,name,activeUser);
             sv.setSize(600,300);
         }
     }
@@ -141,7 +145,7 @@ public class View extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             String name = "Back";
-            StateView sv= new StateView(env,name,activeUser);
+            sv= new StateView(env,name,activeUser);
             sv.setSize(600,300);
         }
     }
@@ -150,7 +154,7 @@ public class View extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             String name = "Shoulder";
-            StateView sv= new StateView(env,name,activeUser);
+            sv= new StateView(env,name,activeUser);
             sv.setSize(600,300);
         }
     }
@@ -159,7 +163,7 @@ public class View extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             String name = "Abs";
-            StateView sv= new StateView(env,name,activeUser);
+            sv= new StateView(env,name,activeUser);
             sv.setSize(600,300);
         }
     }
@@ -168,7 +172,7 @@ public class View extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             String name = "Leg";
-            StateView sv= new StateView(env,name,activeUser);
+            sv= new StateView(env,name,activeUser);
             sv.setSize(600,300);
         }
     }
