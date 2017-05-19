@@ -53,12 +53,12 @@ public class mainEnv extends Environment {
             //eltöltött idő
             HashMap<String, Double> stationtimes;
             stationtimes.put("Biceps", bicepsmax * rnd.NextInt()%10000/100);
-            stationtimes.put("Triceps", tricepsmax * 1.5 *rnd.NextInt()%1000/100);
-            stationtimes.put("Chest", chestmax * 0.76 * rnd.NextInt()%1000/100);
-            stationtimes.put("Back", backmax * 0.4 * rnd.NextInt()%1000/100);
-            stationtimes.put("Shoulder", shouldermax * rnd.NextInt()%1000/100);
-            stationtimes.put("Abs", absmax * 3 * rnd.NextInt()%1000/100);
-            stationtimes.put("Leg", legmax * 0.5 * rnd.NextInt()%1000/100);
+            stationtimes.put("Triceps", tricepsmax * 1.5 *rnd.NextInt()%10000/100);
+            stationtimes.put("Chest", chestmax * 0.76 * rnd.NextInt()%10000/100);
+            stationtimes.put("Back", backmax * 0.4 * rnd.NextInt()%10000/100);
+            stationtimes.put("Shoulder", shouldermax * rnd.NextInt()%10000/100);
+            stationtimes.put("Abs", absmax * 3 * rnd.NextInt()%10000/100);
+            stationtimes.put("Leg", legmax * 0.5 * rnd.NextInt()%10000/100);
             
             users.add(new User(name, id, maxweight, serialweight, stationtimes));     
         }
