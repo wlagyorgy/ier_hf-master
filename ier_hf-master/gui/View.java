@@ -46,6 +46,7 @@ public class View extends JFrame {
         places = new int[free];
     }
 
+
     public void initComponents() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //we need this
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -245,12 +246,13 @@ public class View extends JFrame {
         logbtn.addActionListener(new LoginActLis() );
 
        //elemek hozzáadása a panelhez
-        leftpnl.setLayout(new BoxLayout());
+        leftpnl.setLayout(new BoxLayout(leftpnl,BoxLayout.PAGE_AXIS));
         leftpnl.add(idlb);
         leftpnl.add(idtf);
         leftpnl.add(logbtn);
 
-        leftpanel.setVisible(false);
+        leftpnl.setVisible(true);
+
     }
 
     //bejelentkezés után megjelenő panel inicializálása
@@ -311,7 +313,7 @@ public class View extends JFrame {
         rightpnl.add(absbtn);
         rightpnl.add(leglb);
         rightpnl.add(legbtn);
-
+        rightpnl.setVisible(false);
 
     }
 

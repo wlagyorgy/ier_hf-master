@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class User{
     String name;
-    unsigned int id;
+    int id;
     double sumtime;
     HashMap<String,Integer> maxweight;
     HashMap<String, Integer> serialweight;
