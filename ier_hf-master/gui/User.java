@@ -12,6 +12,15 @@ public class User{
     HashMap<String, Integer> serialweight;
     HashMap<String, Double> stationtimes;
 
+    public User(String name, int id, HashMap<String,Integer> maxweight,HashMap<String, Integer> serialweight,
+                HashMap<String, Double> stationtimes){
+        this.name = name;
+        this.id = id;
+        this.maxweight = maxweight;
+        this.serialweight = serialweight;
+        this.stationtimes = stationtimes;
+    }
+    
     public String getName() {
         return name;
     }
