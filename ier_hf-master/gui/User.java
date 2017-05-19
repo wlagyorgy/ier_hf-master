@@ -42,23 +42,22 @@ public class User{
         return maxweight;
     }
 
-    public void setMaxweight(HashMap<String, Integer> maxweight) {
-        this.maxweight = maxweight;
-    }
+    public void setMaxweight(String key, int max) {maxweight.put(key, max);}
 
     public HashMap<String, Integer> getSerialweight() {
         return serialweight;
     }
 
-    public void setSerialweight(HashMap<String, Integer> serialweight) {
-        this.serialweight = serialweight;
+    public void setSerialweight(String key, int serial) {
+        serialweight.put(key, serial);
     }
 
     public HashMap<String, Double> getStationtimes() {
         return stationtimes;
     }
 
-    public void setStationtimes(HashMap<String, Double> stationtimes) {
-        this.stationtimes = stationtimes;
+    public void setStationtimes(String key, double time) {
+        double min = stationtimes.get(key);
+        stationtimes.put(key, min+time);
     }
 }

@@ -7,3 +7,4 @@
 /* Plans */
 
 +hello <- decision.
++refresh <- .print("Data saved.").

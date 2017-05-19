@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Hashtable;
 
 
 public class View extends JFrame {
@@ -17,8 +15,9 @@ public class View extends JFrame {
     //a sikeres bejelentkezés után látható panel
     JPanel rightpnl;
     JButton logbtn;
+    User activeUser;
 
-    Environment mainEnv;
+    Environment env;
 
     JButton bicepsbtn;
     JLabel bicepslb;
@@ -37,16 +36,31 @@ public class View extends JFrame {
 
     JTextField idtf;
     JLabel idlb;
+    StateView sv;
 
 
 
-    public View(Environment env) {
+    public View(Environment environment) {
         initComponents();
-        mainEnv = env;
+        env = environment;
        // places = new int[free];
     }
 
+    public int getMax(){
+        return sv.getMaxWeight();
+    }
 
+    public int getSerial(){
+        return sv.getSerialMaxWeight();
+    }
+
+    public double getTime(){
+        return sv.getTimeSpent();
+    }
+
+    public String getTtype() {
+        return sv.trainingType;
+    }
     public void initComponents() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //we need this
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
@@ -59,7 +73,10 @@ public class View extends JFrame {
         setVisible(true);
     }
 
+    public void addUser(User user){
+        this.activeUser=user;
 
+    }
     public int getIDText(){
         return Integer.parseInt(idtf.getText().toString());
     }
@@ -81,13 +98,13 @@ public class View extends JFrame {
             if (logbtn.getText().toString().equals("Login")){
                 try{
                     Integer.parseInt(idtf.getText().toString());
-                    mainEnv.addPercept(Literal.parseLiteral("log_in"));
+                    env.addPercept(Literal.parseLiteral("log_in"));
                 }catch(Exception ex) {
-                    mainEnv.addPercept(Literal.parseLiteral("wrong_id"));
+                    env.addPercept(Literal.parseLiteral("wrong_id"));
                 }
             }
             else
-                mainEnv.addPercept(Literal.parseLiteral("log_out"));
+                env.addPercept(Literal.parseLiteral("log_out"));
         }
         }
 
@@ -95,7 +112,7 @@ public class View extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             String name = "Biceps";
-            StateView sv= new StateView(mainEnv,name);
+            sv= new StateView(env,name,activeUser);
             sv.setSize(600,300);
 
         }
@@ -106,7 +123,7 @@ public class View extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             String name = "Triceps";
-            StateView sv= new StateView(mainEnv,name);
+            StateView sv= new StateView(env,name,activeUser);
             sv.setSize(600,300);
         }
     }
@@ -115,7 +132,7 @@ public class View extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             String name = "Chest";
-            StateView sv= new StateView(mainEnv,name);
+            StateView sv= new StateView(env,name,activeUser);
             sv.setSize(600,300);
         }
     }
@@ -124,7 +141,7 @@ public class View extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             String name = "Back";
-            StateView sv= new StateView(mainEnv,name);
+            StateView sv= new StateView(env,name,activeUser);
             sv.setSize(600,300);
         }
     }
@@ -133,7 +150,7 @@ public class View extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             String name = "Shoulder";
-            StateView sv= new StateView(mainEnv,name);
+            StateView sv= new StateView(env,name,activeUser);
             sv.setSize(600,300);
         }
     }
@@ -142,7 +159,7 @@ public class View extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             String name = "Abs";
-            StateView sv= new StateView(mainEnv,name);
+            StateView sv= new StateView(env,name,activeUser);
             sv.setSize(600,300);
         }
     }
@@ -151,7 +168,7 @@ public class View extends JFrame {
         public void actionPerformed(ActionEvent e)
         {
             String name = "Leg";
-            StateView sv= new StateView(mainEnv,name);
+            StateView sv= new StateView(env,name,activeUser);
             sv.setSize(600,300);
         }
     }
@@ -240,6 +257,5 @@ public class View extends JFrame {
         rightpnl.setVisible(false);
 
     }
-
 
 }

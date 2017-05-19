@@ -7,4 +7,4 @@
 /* Plans */
 
 +take_place <- ask_info.
-+leave_place <- clear.
++leave_place <- refresh.
