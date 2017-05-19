@@ -37,7 +37,7 @@ public class View extends JFrame {
 
     JTextField idtf;
     JLabel idlb;
-    
+
 
 
     public View(Environment env, int free) {
