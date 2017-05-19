@@ -8,8 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.lang.Integer;
+import java.util.Timer;
 
 
 public class StateView extends JFrame {
@@ -32,6 +34,10 @@ public class StateView extends JFrame {
     int counter;
     int actualWeight;
     Environment env;
+    HashMap<Integer,Integer> weights;
+    long tStart;
+    long tStop;
+    double eTime;
 
     public StateView(Environment env, String type) {
         initComponents();
@@ -41,6 +47,8 @@ public class StateView extends JFrame {
     }
 
     public void initComponents() {
+        //elindul a timer
+        tStart=System.currentTimeMillis();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //we need this
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
@@ -77,9 +85,11 @@ public class StateView extends JFrame {
 
     private class PushActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            if (weighttf.getText().matches("^[0-9]")) return;
+
+            weights= new HashMap<Integer, Integer>();
+            if (!weighttf.getText().matches("^[0-9]")) return;
             if (actualWeight != Integer.parseInt(weighttf.getText().toString())) {
-                //TODO: hozzáad egy tároló listához (map)  
+                weights.put(actualWeight,counter);
                 counter = 0;
                 actualWeight = Integer.parseInt(weighttf.getText().toString());
             }
@@ -91,6 +101,10 @@ public class StateView extends JFrame {
     private class LeaveActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             env.addPercept(Literal.parseLiteral("leave_place"));
+            tStop=System.currentTimeMillis();
+            long s=tStop-tStart;
+            eTime =s/60000.0;
+
         }
     }
 }
