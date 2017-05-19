@@ -15,11 +15,11 @@ MAS ier_hf {
 
     agents:
 
-        porter;
+        auth;
 
-        manager;
+        central;
 
-        alarm;
+        mashine#7;
 
 }
 

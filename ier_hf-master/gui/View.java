@@ -59,22 +59,20 @@ public class View extends JFrame {
         setVisible(true);
     }
 
-    /*
-    private class CarinbtnActLis implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            if (carplatetf.getText().length() > 0) {
-                environment.addPercept(Literal.parseLiteral("car_in"));
-            }
-        }
-    }
 
-*/
+    public int getIDText(){
+        return Integer.parseInt(idtf.getText().toString());
+    }
 
     private class LoginActLis implements ActionListener{
         public void actionPerformed(ActionEvent e)
         {
             if (logbtn.getText().toString().equals("Login")){
+                if (idtf.getText().toString().matches("^[0-9]")){
                 mainEnv.addPercept(Literal.parseLiteral("log_in"));
+               }
+               else
+                    mainEnv.addPercept(Literal.parseLiteral("wrong_id"));
             }
             else
                 mainEnv.addPercept(Literal.parseLiteral("log_out"));
@@ -147,111 +145,6 @@ public class View extends JFrame {
     }
 
 
-
-
-/*
-    public int getWeirdthingplace() {
-        return weirdthingplace;
-    }
-
-    public void getCarbyplace(int place){
-        for(int i = 0; i < cars.size(); i++){
-            if(cars.get(i).getPlace() == place){
-                problem = cars.get(i);
-            }
-        }
-    }
-
-    public Hashtable<String, String> getCarinfo(){
-        Hashtable<String,String> result = new Hashtable<>();
-        result.put("name", problem.getName());
-        result.put("email", problem.getEmail());
-        result.put("number", String.valueOf(problem.getNumber()));
-        result.put("thing", weirdthing);
-        return result;
-    }
-/*
-    private class EmergencyActLis implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            environment.addPercept(Literal.parseLiteral("emergency"));
-        }
-    }
-
-  */
-/*
-    public void AddActualCarplate() {
-        AddCarplate(carplatetf.getText());
-    }
-
-    public void AddCarplate(String car) {
-        Car temp = new Car(car);
-        temp.setPlace(getfreespace());
-        cars.add(temp);
-        refreshplatelist();
-    }
-
-    private void refreshplatelist() {
-        model = new DefaultComboBoxModel(carplatesgen().toArray(new String[]{}));
-        carplatecb.setModel(model);
-    }
-
-    public boolean isValidCarplateInput() {
-        ArrayList<String> temp = new ArrayList<String>();
-        for (int i = 0; i < cars.size(); i++) {
-            temp.add(cars.get(i).getCarplate());
-        }
-        return temp.contains(carplatetf.getText());
-    }
-
-    public void RemoveCarplate() {
-        String car = carplatetf.getText();
-        ArrayList<String> temp = new ArrayList<String>();
-        for (int i = 0; i < cars.size(); i++) {
-            temp.add(cars.get(i).getCarplate());
-        }
-        int index = temp.indexOf(car);
-        places[cars.get(index).getPlace()] = 0;
-        cars.remove(index);
-        refreshplatelist();
-    }
-
-    private ArrayList<String> carplatesgen() {
-        ArrayList<String> temp = new ArrayList<String>();
-        for (int i = 0; i < cars.size(); i++) {
-            temp.add(cars.get(i).stringify());
-        }
-        return temp;
-    }
-
-    private int getfreespace() {
-        int i = 0;
-        while (places[i] != 0) {
-            i++;
-        }
-        places[i] = 1;
-        return i;
-    }
-
-    public int sizeofcars(){
-        return cars.size();
-    }
-
-    public String getcaremail(int index){
-        Car temp = cars.get(index);
-        String result = new String(temp.getEmail());
-        return result;
-    }
-
-    public String getcarnumber(int index){
-        Car temp = cars.get(index);
-        String result = new String(String.valueOf(temp.getNumber()));
-        return result;
-    }
-
-    public void SetFreespaces(int spaces) {
-        textfreespacel.setText(String.valueOf(spaces));
-    }
-*/
 
     //a panel bal oldalának inicializálása
     private void initleftpnl() {

@@ -16,7 +16,7 @@ public class mainEnv extends Environment {
     View display = new View(this);
     int WeirdthingPlace;
     ArrayList<User> users = new ArrayList<>();
-    User activeUser;
+    User activeUser=null;
     @Override
     public void init(String[] args) {
         super.init(args);
@@ -71,12 +71,24 @@ public class mainEnv extends Environment {
     }
 
 
-/*
+
     @Override
     public boolean executeAction(String agName, Structure action) {
 
-        if (action.getFunctor().equals("let_in")) {
-            addPercept(Literal.parseLiteral("new_car"));
+        if (action.getFunctor().equals("decision")) {
+
+            for (User user : users){
+                if (user.getId()==display.getIDText()){
+                    activeUser=user;
+                }
+            }
+            if (activeUser==null) {
+                addPercept(Literal.parseLiteral("denied"));
+            }
+            else
+            {
+                addPercept(Literal.parseLiteral("let_in"));
+            }
 
         } else if (action.getFunctor().equals("let_out")) {
             addPercept(Literal.parseLiteral("delete_car"));
