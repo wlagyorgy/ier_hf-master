@@ -56,10 +56,10 @@ public class View extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //we need this
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        inituphalf();
-        initdownhalf();
-        add(uphalf);
-        add(downhalf);
+        initleftpnl();
+        initrightpnl();
+        add(leftpnl);
+        add(rightpnl);
         pack();
         setVisible(true);
     }
@@ -256,7 +256,7 @@ public class View extends JFrame {
         leftpnl.add(idtf);
         leftpnl.add(logbtn);
 
-
+        leftpanel.setVisible(false);
     }
 
     //bejelentkezés után megjelenő panel inicializálása
