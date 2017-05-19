@@ -4,36 +4,39 @@ import jason.asSyntax.*;
 
 import jason.environment.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Random;
 import java.util.logging.*;
+import javax.swing.*;
 
 public class mainEnv extends Environment {
     private Logger logger = Logger.getLogger("ier_hf.mas2j." + mainEnv.class.getName());
     View display = new View(this);
-    display.setSize(500, 300)
     int WeirdthingPlace;
     ArrayList<User> users = new ArrayList<>();
-    User activeUser = new User();
+    User activeUser;
     @Override
     public void init(String[] args) {
         super.init(args);
         Random rnd = new Random();
-        string[] firstnames = {"Karcsi", "Lajos", "Peter", "Andras", "Marcell", "Zsolt", "Kata", "Gyorgy", "Krisztina", "Istvan"};
-        string[] lastnames = {"Kovacs", "Varga", "Nemeth", "Toth", "Olah", "Lakatos", "Humbak", "Gyongyosi", "Amzug", "Papp"};
+        String[] firstnames = {"Karcsi", "Lajos", "Peter", "Andras", "Marcell", "Zsolt", "Kata", "Gyorgy", "Krisztina", "Istvan"};
+        String[] lastnames = {"Kovacs", "Varga", "Nemeth", "Toth", "Olah", "Lakatos", "Humbak", "Gyongyosi", "Amzug", "Papp"};
         for (int i=0;i<10;i++){
-            int name = firstname[i] + lastname[i];
-            int id = rnd.NextInt()%10000;
+            String name = firstnames[i] + lastnames[i];
+            int id = rnd.nextInt()%10000;
             //maxsúlyok
-            int bicepsmax = rnd.NextInt()%60 + 20;
-            int tricepsmax = rnd.NextInt()%40 + 20;
-            int chestmax = rnd.NextInt()%80 + 40;
-            int backmax = rnd.NextInt()%140 + 60;
-            int shouldermax = rnd.NextInt()%50 + 40;
-            int absmax = rnd.NextInt()%20 + 10;
-            int legmax = rnd.NextInt()%120 + 40;
+            int bicepsmax = rnd.nextInt()%60 + 20;
+            int tricepsmax = rnd.nextInt()%40 + 20;
+            int chestmax = rnd.nextInt()%80 + 40;
+            int backmax = rnd.nextInt()%140 + 60;
+            int shouldermax = rnd.nextInt()%50 + 40;
+            int absmax = rnd.nextInt()%20 + 10;
+            int legmax = rnd.nextInt()%120 + 40;
             
        
-            HashMap<String,Integer> maxweight;
+            HashMap<String,Integer> maxweight = new HashMap<>();
             maxweight.put("Biceps", bicepsmax);
             maxweight.put("Triceps", tricepsmax);
             maxweight.put("Chest", chestmax);
@@ -43,24 +46,24 @@ public class mainEnv extends Environment {
             maxweight.put("Leg", legmax);
             
             //szériasúlyok.
-            HashMap<String, Integer> serialweight;
-            serialweight.put("Biceps", math.abs(bicepsmax - rnd.NextInt()%20));
-            serialweight.put("Triceps", math.abs(tricepsmax - rnd.NextInt()%20));
-            serialweight.put("Chest", math.abs(chestmax - rnd.NextInt()%40));
-            serialweight.put("Back", math.abs(backmax - rnd.NextInt()%60));
-            serialweight.put("Shoulder", math.abs(shouldermax - rnd.NextInt()%40));
-            serialweight.put("Abs", math.abs(absmax - rnd.NextInt()%10));
-            serialweight.put("Leg", math.abs(legmax - rnd.NextInt()%40));
+            HashMap<String, Integer> serialweight = new HashMap<>();
+            serialweight.put("Biceps", Math.abs(bicepsmax - rnd.nextInt()%20));
+            serialweight.put("Triceps", Math.abs(tricepsmax - rnd.nextInt()%20));
+            serialweight.put("Chest", Math.abs(chestmax - rnd.nextInt()%40));
+            serialweight.put("Back", Math.abs(backmax - rnd.nextInt()%60));
+            serialweight.put("Shoulder", Math.abs(shouldermax - rnd.nextInt()%40));
+            serialweight.put("Abs", Math.abs(absmax - rnd.nextInt()%10));
+            serialweight.put("Leg", Math.abs(legmax - rnd.nextInt()%40));
            
             //eltöltött idő
-            HashMap<String, Double> stationtimes;
-            stationtimes.put("Biceps", bicepsmax * rnd.NextInt()%10000/100);
-            stationtimes.put("Triceps", tricepsmax * 1.5 *rnd.NextInt()%10000/100);
-            stationtimes.put("Chest", chestmax * 0.76 * rnd.NextInt()%10000/100);
-            stationtimes.put("Back", backmax * 0.4 * rnd.NextInt()%10000/100);
-            stationtimes.put("Shoulder", shouldermax * rnd.NextInt()%10000/100);
-            stationtimes.put("Abs", absmax * 3 * rnd.NextInt()%10000/100);
-            stationtimes.put("Leg", legmax * 0.5 * rnd.NextInt()%10000/100);
+            HashMap<String, Double> stationtimes=new HashMap<>();
+            stationtimes.put("Biceps", 1.0*bicepsmax * rnd.nextInt()%10000/100);
+            stationtimes.put("Triceps", tricepsmax * 1.5 *rnd.nextInt()%10000/100);
+            stationtimes.put("Chest", chestmax * 0.76 * rnd.nextInt()%10000/100);
+            stationtimes.put("Back", backmax * 0.4 * rnd.nextInt()%10000/100);
+            stationtimes.put("Shoulder", 1.0*shouldermax * rnd.nextInt()%10000/100);
+            stationtimes.put("Abs", 1.0*absmax * 3 * rnd.nextInt()%10000/100);
+            stationtimes.put("Leg", legmax * 0.5 * rnd.nextInt()%10000/100);
             
             users.add(new User(name, id, maxweight, serialweight, stationtimes));     
         }

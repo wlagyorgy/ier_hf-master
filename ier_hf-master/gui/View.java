@@ -14,7 +14,7 @@ import java.util.Hashtable;
 public class View extends JFrame {
     //bejelentkezési panel
     JPanel leftpnl;
-    //a siekres bejelentkezés után látható panel
+    //a sikeres bejelentkezés után látható panel
     JPanel rightpnl;
     JButton logbtn;
 
@@ -40,7 +40,7 @@ public class View extends JFrame {
 
 
 
-    public View(Environment env, int free) {
+    public View(Environment env) {
         initComponents();
         mainEnv = env;
        // places = new int[free];
@@ -84,7 +84,9 @@ public class View extends JFrame {
     private class BicepsbtnActLis implements ActionListener{
         public void actionPerformed(ActionEvent e)
         {
-
+            String name = "Biceps";
+            StateView sv= new StateView(mainEnv,name);
+            sv.setSize(600,300);
 
         }
     }
@@ -93,42 +95,54 @@ public class View extends JFrame {
     private class TricepsbtnActLis implements ActionListener{
         public void actionPerformed(ActionEvent e)
         {
-
+            String name = "Triceps";
+            StateView sv= new StateView(mainEnv,name);
+            sv.setSize(600,300);
         }
     }
 
     private class ChestbtnActLis implements ActionListener{
         public void actionPerformed(ActionEvent e)
         {
-
+            String name = "Chest";
+            StateView sv= new StateView(mainEnv,name);
+            sv.setSize(600,300);
         }
     }
 
     private class BackbtnActLis implements ActionListener{
         public void actionPerformed(ActionEvent e)
         {
-
+            String name = "Back";
+            StateView sv= new StateView(mainEnv,name);
+            sv.setSize(600,300);
         }
     }
 
     private class ShoulderbtnActLis implements ActionListener{
         public void actionPerformed(ActionEvent e)
         {
-
+            String name = "Shoulder";
+            StateView sv= new StateView(mainEnv,name);
+            sv.setSize(600,300);
         }
     }
 
     private class AbsbtnActLis implements ActionListener{
         public void actionPerformed(ActionEvent e)
         {
-
+            String name = "Abs";
+            StateView sv= new StateView(mainEnv,name);
+            sv.setSize(600,300);
         }
     }
 
     private class LegbtnActLis implements ActionListener{
         public void actionPerformed(ActionEvent e)
         {
-
+            String name = "Leg";
+            StateView sv= new StateView(mainEnv,name);
+            sv.setSize(600,300);
         }
     }
 
