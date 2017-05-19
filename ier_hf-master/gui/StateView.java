@@ -9,105 +9,88 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.lang.Integer;
 
 
 public class StateView extends JFrame {
     JPanel leftpnl;
+    JLabel statisticslb;
+    JTextArea staticsticta;
+    
+    
     JPanel rightpnl;
-    JButton logbtn;
+    JLabel weightlb;
+    JTextField weighttf;
+    JButton pushbtn;
+    JLabel counterlb;
+    
+    JButton leavebtn;
 
-
-
-    JButton bicepsbtn;
-    JLabel bicepslb;
-    JButton tricepsbtn;
-    JLabel tricepslb;
-    JButton chestbtn;
-    JLabel chestlb;
-    JButton backbtn;
-    JLabel  backlb;
-    JButton shoulderbtn;
-    JLabel shoulderlb;
-    JButton absbtn;
-    JLabel abslb;
-    JButton legbtn;
-    JLabel leglb;
-
-    JTextField idtf;
-    JLabel idlb;
-
-    /*
-    JLabel freespacel;
-    JLabel textfreespacel;
-    JPanel downhalf;
-    JComboBox carplatecb;
-    JComboBox happeningcb;
-    JButton notifbtn;
-    JButton emergencybtn;
-    JButton floodbtn;
-    JButton firebtn;
-    DefaultComboBoxModel model;
-    ArrayList<Car> cars;
-    int[] places;
-    String[] problems = {"lopas", "muszaki"};
-    Environment environment;
-    int weirdthingplace;
-    String weirdthing;
-    Car problem;
-*/
-    public View(Environment env, int free) {
+    User actualUser;
+    String trainingType;
+    int counter;
+    int actualWeight;
+    Environment env;
+    
+    public StateView(Environment env, String type) {
         initComponents();
         environment = env;
-        places = new int[free];
+        trainingType = type;
+        counter = 0;
     }
 
     public void initComponents() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //we need this
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-
-        inituphalf();
-        initdownhalf();
-        add(uphalf);
-        add(downhalf);
+        
+        leftpnl = new JPanel();
+        statisticslb = new JLabel("Statistics");
+        statisticsta = new TextArea(20,20);
+        leftpnl.setLayout(new BoxLayout());
+        leftpnl.add(statisticslb);
+        leftpnl.add(statisticsta);
+        
+        add(leftpnl);
+        
+        rightpnl = new JPanel();
+        weightlb = new JLabel("Weight:");
+        weighttf = new TextField("20");
+        actualWeight = 20;
+        pushbtn = new JButton("Push");
+        pushbtn.addActionListener(new PushActionListener());
+        counterlb = new Label("0");
+        leavebtn = new JButton("Leave!");
+        leavebtn.addActionListener(new LeaveActionListener());
+        rightpnl.setLayout(new BoxLayout());
+        rightpnl.add(weightlb);
+        rightpnl.add(weighttf);
+        rightpnl.add(pushbtn);
+        rightpnl.add(counterlb);
+        rightpnl.add(leavebtn);
+        
+        add(rightpnl);
         pack();
         setVisible(true);
     }
-
-    private class CarinbtnActLis implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            if (carplatetf.getText().length() > 0) {
-                environment.addPercept(Literal.parseLiteral("car_in"));
-            }
-        }
-    }
-
-    private class CaroutbtnActLis implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            if (carplatetf.getText().length() > 0) {
-                environment.addPercept(Literal.parseLiteral("car_out"));
-            }
-        }
-    }
-
-    private class LoginActLis implements ActionListener{
+    private class PushActionListener implements ActionListener{
         public void actionPermormed(ActionEvent e)
         {
-
-        }
-
-    }
-    private class NotifActLis implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            String car = (String) carplatecb.getSelectedItem();
-            String prob = (String) happeningcb.getSelectedItem();
-            if ((car != null) && (prob != null)) {
-                weirdthingplace = Integer.parseInt(car.split(" ")[0]);
-                weirdthing = prob;
-                environment.addPercept(Literal.parseLiteral("weird_thing"));
+            if (weighttf.getText().matches("^[0-9]")) return;
+            if (actualWeight != (int) weighttf.getText()){
+                //TODO: hozzáad egy tároló listához (map)  
+                counter = 0;
+                actualWeight = (int) weighttf.getText();
             }
+            counter++;
+            counterlb.setText(Integer.toString(counter));
         }
     }
-
+     private class LeaveActionListener implements ActionListener{
+        public void actionPermormed(ActionEvent e)
+        {
+            env.addPercept(Literal.parseLiteral("leave_place"));
+        }
+     }
     public int getWeirdthingplace() {
         return weirdthingplace;
     }
@@ -127,24 +110,6 @@ public class StateView extends JFrame {
         result.put("number", String.valueOf(problem.getNumber()));
         result.put("thing", weirdthing);
         return result;
-    }
-
-    private class EmergencyActLis implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            environment.addPercept(Literal.parseLiteral("emergency"));
-        }
-    }
-
-    private class FloodActLis implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            environment.addPercept(Literal.parseLiteral("flood"));
-        }
-    }
-
-    private class FireActLis implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            environment.addPercept(Literal.parseLiteral("fire"));
-        }
     }
 
     public void AddActualCarplate() {
@@ -218,49 +183,5 @@ public class StateView extends JFrame {
 
     public void SetFreespaces(int spaces) {
         textfreespacel.setText(String.valueOf(spaces));
-    }
-
-    private void initleftpnl() {
-        leftpnl=new JPanel();
-        idlb=new JLabel("Adja meg a kártyaszámát!");
-        logbtn=new JButton("Belépés");
-        idtf=new JTextField();
-
-        logbtn.addActionListener(new LoginActLis() );
-
-        notifbtn.addActionListener(new NotifActLis());
-        emergencybtn.addActionListener(new EmergencyActLis());
-        floodbtn.addActionListener(new FloodActLis());
-        firebtn.addActionListener(new FireActLis());
-
-        leftpnl.setLayout(new BoxLayout());
-        leftpnl.add(idlb);
-        leftpnl.add(idtf);
-        leftpnl.add(logbtn);
-
-
-    }
-
-    private void inituphalf() {
-        uphalf = new JPanel();
-        carinbtn = new JButton("Auto be");
-        caroutbtn = new JButton("Auto ki");
-        carplatel = new JLabel("Rendszam:");
-        carplatetf = new JTextField();
-        carplatetf.setColumns(10);
-        freespacel = new JLabel("Szabad helyek szama: ");
-        textfreespacel = new JLabel();
-        textfreespacel.setText("     ");
-
-        carinbtn.addActionListener(new CarinbtnActLis());
-        caroutbtn.addActionListener(new CaroutbtnActLis());
-
-        uphalf.setLayout(new FlowLayout());
-        uphalf.add(carinbtn);
-        uphalf.add(caroutbtn);
-        uphalf.add(carplatel);
-        uphalf.add(carplatetf);
-        uphalf.add(freespacel);
-        uphalf.add(textfreespacel);
     }
 }
