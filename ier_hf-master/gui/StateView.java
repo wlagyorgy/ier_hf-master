@@ -15,15 +15,16 @@ import java.lang.Integer;
 public class StateView extends JFrame {
     JPanel leftpnl;
     JLabel statisticslb;
-    JTextArea staticsticta;
-    
-    
+    JTextArea statisticsta;
+
+
     JPanel rightpnl;
     JLabel weightlb;
     JTextField weighttf;
     JButton pushbtn;
     JLabel counterlb;
-    
+    JLabel traininglb;
+
     JButton leavebtn;
 
     User actualUser;
@@ -31,10 +32,10 @@ public class StateView extends JFrame {
     int counter;
     int actualWeight;
     Environment env;
-    
+
     public StateView(Environment env, String type) {
         initComponents();
-        environment = env;
+        this.env = env;
         trainingType = type;
         counter = 0;
     }
@@ -42,56 +43,59 @@ public class StateView extends JFrame {
     public void initComponents() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //we need this
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-        
+
         leftpnl = new JPanel();
+        traininglb = new JLabel(trainingType);
         statisticslb = new JLabel("Statistics");
-        statisticsta = new TextArea(20,20);
-        leftpnl.setLayout(new BoxLayout());
+        statisticsta = new JTextArea(5, 30);
+        leftpnl.setLayout(new BoxLayout(leftpnl, BoxLayout.Y_AXIS));
         leftpnl.add(statisticslb);
         leftpnl.add(statisticsta);
-        
+
         add(leftpnl);
-        
+
         rightpnl = new JPanel();
         weightlb = new JLabel("Weight:");
-        weighttf = new TextField("20");
+        weighttf = new JTextField("20");
         actualWeight = 20;
         pushbtn = new JButton("Push");
         pushbtn.addActionListener(new PushActionListener());
-        counterlb = new Label("0");
+        counterlb = new JLabel("0");
         leavebtn = new JButton("Leave!");
         leavebtn.addActionListener(new LeaveActionListener());
-        rightpnl.setLayout(new BoxLayout());
+        rightpnl.setLayout(new BoxLayout(rightpnl, BoxLayout.Y_AXIS));
         rightpnl.add(weightlb);
         rightpnl.add(weighttf);
         rightpnl.add(pushbtn);
         rightpnl.add(counterlb);
         rightpnl.add(leavebtn);
-        
+
         add(rightpnl);
         pack();
         setVisible(true);
     }
-    private class PushActionListener implements ActionListener{
-        public void actionPermormed(ActionEvent e)
-        {
+
+    private class PushActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
             if (weighttf.getText().matches("^[0-9]")) return;
-            if (actualWeight != (int) weighttf.getText()){
+            if (actualWeight != Integer.parseInt(weighttf.getText().toString())) {
                 //TODO: hozzáad egy tároló listához (map)  
                 counter = 0;
-                actualWeight = (int) weighttf.getText();
+                actualWeight = Integer.parseInt(weighttf.getText().toString());
             }
             counter++;
             counterlb.setText(Integer.toString(counter));
         }
     }
-     private class LeaveActionListener implements ActionListener{
-        public void actionPermormed(ActionEvent e)
-        {
+
+    private class LeaveActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
             env.addPercept(Literal.parseLiteral("leave_place"));
         }
-     }
-    public int getWeirdthingplace() {
+    }
+}
+    /*
+     public int getWeirdthingplace() {
         return weirdthingplace;
     }
 
@@ -185,3 +189,4 @@ public class StateView extends JFrame {
         textfreespacel.setText(String.valueOf(spaces));
     }
 }
+*/

@@ -18,7 +18,7 @@ public class View extends JFrame {
     JPanel rightpnl;
     JButton logbtn;
 
-    Enviroment enviroment;
+    Environment mainEnv;
 
     JButton bicepsbtn;
     JLabel bicepslb;
@@ -42,8 +42,8 @@ public class View extends JFrame {
 
     public View(Environment env, int free) {
         initComponents();
-        environment = env;
-        places = new int[free];
+        mainEnv = env;
+       // places = new int[free];
     }
 
 
@@ -73,7 +73,11 @@ public class View extends JFrame {
     private class LoginActLis implements ActionListener{
         public void actionPerformed(ActionEvent e)
         {
-
+            if (logbtn.getText().toString().equals("Belépés")){
+                mainEnv.addPercept(Literal.parseLiteral("log_in"));
+            }
+            else
+                mainEnv.addPercept(Literal.parseLiteral("log_out"));
             }
         }
 
@@ -316,9 +320,6 @@ public class View extends JFrame {
         rightpnl.setVisible(false);
 
     }
-
-
-
 
 
 }

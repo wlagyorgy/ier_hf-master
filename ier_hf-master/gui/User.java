@@ -1,3 +1,5 @@
+package gui;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
@@ -6,7 +8,6 @@ import java.util.Set;
 public class User{
     String name;
     int id;
-    double sumtime;
     HashMap<String,Integer> maxweight;
     HashMap<String, Integer> serialweight;
     HashMap<String, Double> stationtimes;
@@ -27,13 +28,6 @@ public class User{
         this.id = id;
     }
 
-    public double getSumtime() {
-        return sumtime;
-    }
-
-    public void setSumtime(double sumtime) {
-        this.sumtime = sumtime;
-    }
 
     public HashMap<String, Integer> getMaxweight() {
         return maxweight;

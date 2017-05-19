@@ -15,11 +15,11 @@ public class mainEnv extends Environment {
     @Override
     public void init(String[] args) {
         super.init(args);
-        display.SetFreespaces(free_spaces);
+      //  display.SetFreespaces(free_spaces);
     }
 
 
-
+/*
     @Override
     public boolean executeAction(String agName, Structure action) {
 
@@ -93,7 +93,7 @@ public class mainEnv extends Environment {
         }
         return true;
     }
-
+*/
     @Override
     public void stop() {
         super.stop();
