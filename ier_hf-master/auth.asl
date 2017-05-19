@@ -10,3 +10,4 @@
 +denied <- .print("Hitelesítés hiba.").
 +let_in <- .print("Hitelesítés sikeres."); show_buttons.
 +log_out <- .print("Viszlát!").
++wrong_id <- .print("Hibás formátum!").
