@@ -18,6 +18,8 @@ public class mainEnv extends Environment {
         display.SetFreespaces(free_spaces);
     }
 
+
+
     @Override
     public boolean executeAction(String agName, Structure action) {
 

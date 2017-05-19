@@ -183,6 +183,8 @@ public class View extends JFrame {
 
     //a panel bal oldalának inicializálása
     private void initleftpnl() {
+
+        //a belépési panel inicializálás, elemek inicializálása
         leftpnl=new JPanel();
         idlb=new JLabel("Adja meg a kártyaszámát!");
         logbtn=new JButton("Belépés");
@@ -190,11 +192,7 @@ public class View extends JFrame {
 
         logbtn.addActionListener(new LoginActLis() );
 
-        notifbtn.addActionListener(new NotifActLis());
-        emergencybtn.addActionListener(new EmergencyActLis());
-        floodbtn.addActionListener(new FloodActLis());
-        firebtn.addActionListener(new FireActLis());
-
+       //elemek hozzáadása a panelhez
         leftpnl.setLayout(new BoxLayout());
         leftpnl.add(idlb);
         leftpnl.add(idtf);
