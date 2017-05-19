@@ -6,8 +6,8 @@
 
 /* Plans */
 
-+log_in <- .send(central, tell, hello); .print("Hitelesítés megkezdve.").
-+denied <- .print("Hitelesítés hiba.").
-+let_in <- .print("Hitelesítés sikeres."); show_buttons.
-+log_out <- .print("Viszlát!"); set_default.
-+wrong_id <- .print("Hibás formátum!").
++log_in <- .send(central, tell, hello); .print("Authentication beginning...").
++denied <- .print("Authentication failed").
++let_in <- .print("Authentication successful."); show_buttons.
++log_out <- .print("GoodBye!").
++wrong_id <- .print("Wrong format!").
