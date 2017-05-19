@@ -4,6 +4,7 @@ import jason.asSyntax.*;
 
 import jason.environment.*;
 
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -25,7 +26,7 @@ public class mainEnv extends Environment {
         String[] lastnames = {"Kovacs", "Varga", "Nemeth", "Toth", "Olah", "Lakatos", "Humbak", "Gyongyosi", "Amzug", "Papp"};
         for (int i=0;i<10;i++){
             String name = firstnames[i] + lastnames[i];
-            int id = rnd.nextInt()%10000;
+            int id = 10000+i;
             //maxsúlyok
             int bicepsmax = rnd.nextInt()%60 + 20;
             int tricepsmax = rnd.nextInt()%40 + 20;
@@ -76,92 +77,40 @@ public class mainEnv extends Environment {
     public boolean executeAction(String agName, Structure action) {
 
         if (action.getFunctor().equals("decision")) {
-
-            for (User user : users){
-                if (user.getId()==display.getIDText()){
-                    activeUser=user;
+            clearAllPercepts();
+            for (User user : users) {
+                if (user.getId() == display.getIDText()) {
+                    activeUser = user;
                 }
             }
-            if (activeUser==null) {
+            if (activeUser == null) {
                 addPercept(Literal.parseLiteral("denied"));
-            }
-            else
-            {
+            } else {
                 addPercept(Literal.parseLiteral("let_in"));
             }
 
-        } else if (action.getFunctor().equals("let_out")) {
-            addPercept(Literal.parseLiteral("delete_car"));
-
-        } else if (action.getFunctor().equals("let_in_asap")) {
-            addPercept(Literal.parseLiteral("accident"));
-
-        } else if (action.getFunctor().equals("open_gates")) {
-            logger.info("Free to move for the emergency");
+        }
+        else if(action.getFunctor().equals("show_buttons")){
             clearAllPercepts();
-
-        } else if (action.getFunctor().equals("get_car_info")) {
-            logger.info("Problem at " + String.valueOf(display.getWeirdthingplace()));
-            addPercept(Literal.parseLiteral("ask_info"));
-
-        } else if (action.getFunctor().equals("send_info")) {
-            logger.info("Send car info");
-            display.getCarbyplace(display.getWeirdthingplace());
-            addPercept(Literal.parseLiteral("info"));
-
-        } else if (action.getFunctor().equals("send_alarm")) {
-            Hashtable<String, String> problem = display.getCarinfo();
-            logger.info("Notify: " + problem.get("name") + " Call: " + problem.get("number") + " Send email: " +
-            problem.get("email") + " For: " + problem.get("thing"));
+            display.showRightPanel();
+        } else if(action.getFunctor().equals("set_default")) {
             clearAllPercepts();
-
-        } else if (action.getFunctor().equals("add_new_car")) {
-            if (free_spaces > 0) {
-                free_spaces--;
-                display.AddActualCarplate();
-                display.SetFreespaces(free_spaces);
-                logger.info("Car added");
-            } else {
-                logger.info("No more free space");
-            }
-            clearAllPercepts();
-
-        } else if (action.getFunctor().equals("free_car")) {
-            if (display.isValidCarplateInput()) {
-                free_spaces++;
-                logger.info("Valid car plate");
-                display.RemoveCarplate();
-                display.SetFreespaces(free_spaces);
-            } else {
-                logger.info("Invalid car plate");
-            }
-            clearAllPercepts();
-
-        } else if (action.getFunctor().equals("notify_all_flood")) {
-            logger.info("Notify all");
-            for (int i = 0; i < display.sizeofcars(); i++) {
-                logger.info("Send email to: " + display.getcaremail(i) + " and send SMS to: " + display.getcarnumber(i));
-            }
-            clearAllPercepts();
-
-        } else if (action.getFunctor().equals("notify_all_fire")) {
-            logger.info("Notify all");
-            for (int i = 0; i < display.sizeofcars(); i++) {
-                logger.info("Send email to: " + display.getcaremail(i) + " and send SMS to: " + display.getcarnumber(i));
-            }
+            display.hideRightPanel();
+        }
+        return true;
+    }
+   /*
             clearAllPercepts();
 
         } else {
             logger.info("executing: " + action + ", but not implemented!");
-            return false;
-        }
-        return true;
-    }
-*/
-    @Override
-    public void stop() {
-        super.stop();
-    }
-}
 
+*/
+
+        @Override
+        public void stop(){
+            super.stop();
+        }
+
+    }
 

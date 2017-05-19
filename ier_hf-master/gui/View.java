@@ -49,7 +49,7 @@ public class View extends JFrame {
 
     public void initComponents() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //we need this
-        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
 
         initleftpnl();
         initrightpnl();
@@ -64,19 +64,31 @@ public class View extends JFrame {
         return Integer.parseInt(idtf.getText().toString());
     }
 
+    public void showRightPanel(){
+        rightpnl.setVisible(true);
+        setSize(new Dimension(600,600));
+        logbtn.setText("Logout");
+    }
+    public void hideRightPanel(){
+        rightpnl.setVisible(false);
+        setSize(new Dimension(100,200));
+        logbtn.setText("Login");
+    }
+
     private class LoginActLis implements ActionListener{
         public void actionPerformed(ActionEvent e)
         {
             if (logbtn.getText().toString().equals("Login")){
-                if (idtf.getText().toString().matches("^[0-9]")){
-                mainEnv.addPercept(Literal.parseLiteral("log_in"));
-               }
-               else
+                try{
+                    Integer.parseInt(idtf.getText().toString());
+                    mainEnv.addPercept(Literal.parseLiteral("log_in"));
+                }catch(Exception ex) {
                     mainEnv.addPercept(Literal.parseLiteral("wrong_id"));
+                }
             }
             else
                 mainEnv.addPercept(Literal.parseLiteral("log_out"));
-            }
+        }
         }
 
     private class BicepsbtnActLis implements ActionListener{
@@ -209,7 +221,7 @@ public class View extends JFrame {
 
 
 
-        rightpnl.setLayout(new FlowLayout());
+        rightpnl.setLayout(new BoxLayout(rightpnl, BoxLayout.Y_AXIS));
         //elemek hozzáadása a panelhez
         rightpnl.add(bicepslb);
         rightpnl.add(bicepsbtn);

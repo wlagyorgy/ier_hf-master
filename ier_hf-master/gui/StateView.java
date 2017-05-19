@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -49,7 +50,7 @@ public class StateView extends JFrame {
     public void initComponents() {
         //elindul a timer
         tStart=System.currentTimeMillis();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //we need this
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //we need this
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         leftpnl = new JPanel();
@@ -97,14 +98,16 @@ public class StateView extends JFrame {
             counterlb.setText(Integer.toString(counter));
         }
     }
-
+    public StateView stateClass(){
+        return this;
+    }
     private class LeaveActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             env.addPercept(Literal.parseLiteral("leave_place"));
             tStop=System.currentTimeMillis();
             long s=tStop-tStart;
             eTime =s/60000.0;
-
+            dispatchEvent(new WindowEvent(stateClass(), WindowEvent.WINDOW_CLOSING));
         }
     }
 }
