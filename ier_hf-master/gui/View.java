@@ -73,7 +73,7 @@ public class View extends JFrame {
     private class LoginActLis implements ActionListener{
         public void actionPerformed(ActionEvent e)
         {
-            if (logbtn.getText().toString().equals("Belépés")){
+            if (logbtn.getText().toString().equals("Login")){
                 mainEnv.addPercept(Literal.parseLiteral("log_in"));
             }
             else
@@ -244,8 +244,8 @@ public class View extends JFrame {
 
         //a belépési panel inicializálás, elemek inicializálása
         leftpnl=new JPanel();
-        idlb=new JLabel("Adja meg a kártyaszámát!");
-        logbtn=new JButton("Belépés");
+        idlb=new JLabel("Type the cardID:");
+        logbtn=new JButton("Login");
         idtf=new JTextField();
 
         logbtn.addActionListener(new LoginActLis() );
@@ -265,26 +265,26 @@ public class View extends JFrame {
 
         rightpnl = new JPanel();
         //panelen lévő elemek inicializálása
-        bicepsbtn = new JButton("Helyet foglalok!");
-        bicepslb = new JLabel("Bicepszgép");
+        bicepsbtn = new JButton("Take place!");
+        bicepslb = new JLabel("Bicepsmachine");
 
-        tricepsbtn = new JButton("Helyet foglalok!");
-        tricepslb = new JLabel("Tricepszgép");
+        tricepsbtn = new JButton("Take place!");
+        tricepslb = new JLabel("Tricepsmachine");
 
-        chestbtn = new JButton("Helyet foglalok!");
-        chestlb = new JLabel("Mellgép");
+        chestbtn = new JButton("Take place!");
+        chestlb = new JLabel("Chestmachine");
 
-        backbtn = new JButton("Helyet foglalok!");
-        backlb = new JLabel("Hátazógép");
+        backbtn = new JButton("Take place!");
+        backlb = new JLabel("Backmachine");
 
-        shoulderbtn = new JButton("Helyet foglalok!");
-        shoulderlb = new JLabel("Vállazógép");
+        shoulderbtn = new JButton("Take place!");
+        shoulderlb = new JLabel("Shouldermachine");
 
-        absbtn = new JButton("Helyet foglalok!");
-        abslb = new JLabel("Hasazóép");
+        absbtn = new JButton("Take place!");
+        abslb = new JLabel("Absmachine");
 
-        legbtn =  new JButton("Helyet foglalok!");
-        leglb = new JLabel("Lábazógép");
+        legbtn =  new JButton("Take place!");
+        leglb = new JLabel("Legmachine");
 
 
         //actionlistenerek a gombokra

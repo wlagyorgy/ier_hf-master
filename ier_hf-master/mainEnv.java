@@ -1,3 +1,4 @@
+import gui.User;
 import gui.View;
 import jason.asSyntax.*;
 
@@ -9,6 +10,7 @@ import java.util.logging.*;
 public class mainEnv extends Environment {
     private Logger logger = Logger.getLogger("ier_hf.mas2j." + mainEnv.class.getName());
     View display = new View(this);
+    display.setSize(500, 300)
     int WeirdthingPlace;
     ArrayList<User> users = new ArrayList<>();
     User activeUser = new User();
