@@ -99,11 +99,14 @@ public class View extends JFrame {
     private class LoginActLis implements ActionListener{
         public void actionPerformed(ActionEvent e)
         {
+            env.clearAllPercepts();
             if (logbtn.getText().toString().equals("Login")){
                 try{
                     Integer.parseInt(idtf.getText().toString());
                     env.addPercept(Literal.parseLiteral("log_in"));
+
                 }catch(Exception ex) {
+
                     env.addPercept(Literal.parseLiteral("wrong_id"));
                 }
             }

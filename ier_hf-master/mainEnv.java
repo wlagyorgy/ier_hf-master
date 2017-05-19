@@ -94,24 +94,21 @@ public class mainEnv extends Environment {
 
         }
         else if(action.getFunctor().equals("show_buttons")){
-            clearAllPercepts();
             display.showRightPanel();
-        } else if(action.getFunctor().equals("set_default")) {
             clearAllPercepts();
+        } else if(action.getFunctor().equals("set_default")) {
             display.hideRightPanel();
+            clearAllPercepts();
         }else if (action.getFunctor().equals("refresh")){
             refresh(display.getMax(), display.getSerial(), display.getTime(), display.getTtype());
             display.closestateview();
+            clearAllPercepts();
+        }else if (action.getFunctor().equals("delete")){
+            clearAllPercepts();
         }
         return true;
     }
-   /*
-            clearAllPercepts();
 
-        } else {
-            logger.info("executing: " + action + ", but not implemented!");
-
-*/
 
         @Override
         public void stop(){

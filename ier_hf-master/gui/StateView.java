@@ -88,6 +88,7 @@ public class StateView extends JFrame {
         rightpnl.add(pushbtn);
         rightpnl.add(counterlb);
         rightpnl.add(leavebtn);
+        weights= new HashMap<Integer, Integer>();
 
         add(rightpnl);
         pack();
@@ -97,7 +98,7 @@ public class StateView extends JFrame {
     private class PushActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
-            weights= new HashMap<Integer, Integer>();
+
             try {
                 Integer.parseInt(weighttf.getText().toString());
                 if (actualWeight != Integer.parseInt(weighttf.getText().toString())) {
@@ -131,7 +132,7 @@ public class StateView extends JFrame {
             if(max<key) max = key;
 
         }
-      
+
         return max;
     }
     public int getSerialMaxWeight(){

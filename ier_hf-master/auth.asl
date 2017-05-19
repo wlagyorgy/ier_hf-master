@@ -6,8 +6,6 @@
 
 /* Plans */
 
-+log_in <- decision.
-+denied <- .print("Authentication failed").
-+let_in <- .print("Authentication successful."); show_buttons.
-+log_out <- .print("GoodBye!").
-+wrong_id <- .print("Wrong format!").
++log_in <- .print("Authentication has begun..."); decision.
++log_out <- set_default;.print("GoodBye!").
++wrong_id <- delete;.print("Wrong format!").
