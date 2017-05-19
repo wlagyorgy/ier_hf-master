@@ -18,7 +18,7 @@ public class View extends JFrame {
     JPanel rightpnl;
     JButton logbtn;
 
-
+    Enviroment enviroment;
 
     JButton bicepsbtn;
     JLabel bicepslb;
@@ -37,13 +37,7 @@ public class View extends JFrame {
 
     JTextField idtf;
     JLabel idlb;
-
-    JTextArea statsarea;
-    JLabel statspnl;
-    JLabel weightlb;
-    JTextField weighttf;
-    JButton doexcbtn;
-
+    
 
 
     public View(Environment env, int free) {
@@ -76,57 +70,57 @@ public class View extends JFrame {
 */
 
     private class LoginActLis implements ActionListener{
-        public void actionPermormed(ActionEvent e)
+        public void actionPerformed(ActionEvent e)
         {
 
             }
         }
 
     private class BicepsbtnActLis implements ActionListener{
-        public void actionPermormed(ActionEvent e)
+        public void actionPerformed(ActionEvent e)
         {
 
         }
     }
 
 
-    private class TricpesbtnActLis implements ActionListener{
-        public void actionPermormed(ActionEvent e)
+    private class TricepsbtnActLis implements ActionListener{
+        public void actionPerformed(ActionEvent e)
         {
 
         }
     }
 
     private class ChestbtnActLis implements ActionListener{
-        public void actionPermormed(ActionEvent e)
+        public void actionPerformed(ActionEvent e)
         {
 
         }
     }
 
     private class BackbtnActLis implements ActionListener{
-        public void actionPermormed(ActionEvent e)
+        public void actionPerformed(ActionEvent e)
         {
 
         }
     }
 
     private class ShoulderbtnActLis implements ActionListener{
-        public void actionPermormed(ActionEvent e)
+        public void actionPerformed(ActionEvent e)
         {
 
         }
     }
 
     private class AbsbtnActLis implements ActionListener{
-        public void actionPermormed(ActionEvent e)
+        public void actionPerformed(ActionEvent e)
         {
 
         }
     }
 
     private class LegbtnActLis implements ActionListener{
-        public void actionPermormed(ActionEvent e)
+        public void actionPerformed(ActionEvent e)
         {
 
         }
@@ -135,7 +129,7 @@ public class View extends JFrame {
 
 
 
-
+/*
     public int getWeirdthingplace() {
         return weirdthingplace;
     }
@@ -164,7 +158,7 @@ public class View extends JFrame {
     }
 
   */
-
+/*
     public void AddActualCarplate() {
         AddCarplate(carplatetf.getText());
     }
@@ -237,7 +231,7 @@ public class View extends JFrame {
     public void SetFreespaces(int spaces) {
         textfreespacel.setText(String.valueOf(spaces));
     }
-
+*/
 
     //a panel bal oldalának inicializálása
     private void initleftpnl() {
@@ -321,16 +315,8 @@ public class View extends JFrame {
 
     }
 
-    //egy adott
-    private void initstationpnl(){
 
-        statsarea = new JTextArea(5,30);
-        statspnl = new JPanel("Statisztikák:")
-        weighttf = new JTextField();
-        weightlb = new JLabel("Írjon be egy súly:")
-        doexcbtn = new JButton("Csináld")
 
-    }
 
 
 }
