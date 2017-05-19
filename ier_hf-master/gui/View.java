@@ -12,7 +12,9 @@ import java.util.Hashtable;
 
 
 public class View extends JFrame {
+    //bejelentkezési panel
     JPanel leftpnl;
+    //a siekres bejelentkezés után látható panel
     JPanel rightpnl;
     JButton logbtn;
 
@@ -35,6 +37,13 @@ public class View extends JFrame {
 
     JTextField idtf;
     JLabel idlb;
+
+    JTextArea statsarea;
+    JLabel statspnl;
+    JLabel weightlb;
+    JTextField weighttf;
+    JButton doexcbtn;
+
 
 
     public View(Environment env, int free) {
@@ -69,12 +78,61 @@ public class View extends JFrame {
     private class LoginActLis implements ActionListener{
         public void actionPermormed(ActionEvent e)
         {
-            if (logbtn.getText()=="Belépés"){
-                if (idtf.Text)
+
             }
         }
 
+    private class BicepsbtnActLis implements ActionListener{
+        public void actionPermormed(ActionEvent e)
+        {
+
+        }
     }
+
+
+    private class TricpesbtnActLis implements ActionListener{
+        public void actionPermormed(ActionEvent e)
+        {
+
+        }
+    }
+
+    private class ChestbtnActLis implements ActionListener{
+        public void actionPermormed(ActionEvent e)
+        {
+
+        }
+    }
+
+    private class BackbtnActLis implements ActionListener{
+        public void actionPermormed(ActionEvent e)
+        {
+
+        }
+    }
+
+    private class ShoulderbtnActLis implements ActionListener{
+        public void actionPermormed(ActionEvent e)
+        {
+
+        }
+    }
+
+    private class AbsbtnActLis implements ActionListener{
+        public void actionPermormed(ActionEvent e)
+        {
+
+        }
+    }
+
+    private class LegbtnActLis implements ActionListener{
+        public void actionPermormed(ActionEvent e)
+        {
+
+        }
+    }
+
+
 
 
 
@@ -201,26 +259,78 @@ public class View extends JFrame {
 
     }
 
-    private void inituphalf() {
-        uphalf = new JPanel();
-        carinbtn = new JButton("Auto be");
-        caroutbtn = new JButton("Auto ki");
-        carplatel = new JLabel("Rendszam:");
-        carplatetf = new JTextField();
-        carplatetf.setColumns(10);
-        freespacel = new JLabel("Szabad helyek szama: ");
-        textfreespacel = new JLabel();
-        textfreespacel.setText("     ");
+    //bejelentkezés után megjelenő panel inicializálása
+    private void initrightpnl() {
 
-        carinbtn.addActionListener(new CarinbtnActLis());
-        caroutbtn.addActionListener(new CaroutbtnActLis());
+        rightpnl = new JPanel();
+        //panelen lévő elemek inicializálása
+        bicepsbtn = new JButton("Helyet foglalok!");
+        bicepslb = new JLabel("Bicepszgép");
 
-        uphalf.setLayout(new FlowLayout());
-        uphalf.add(carinbtn);
-        uphalf.add(caroutbtn);
-        uphalf.add(carplatel);
-        uphalf.add(carplatetf);
-        uphalf.add(freespacel);
-        uphalf.add(textfreespacel);
+        tricepsbtn = new JButton("Helyet foglalok!");
+        tricepslb = new JLabel("Tricepszgép");
+
+        chestbtn = new JButton("Helyet foglalok!");
+        chestlb = new JLabel("Mellgép");
+
+        backbtn = new JButton("Helyet foglalok!");
+        backlb = new JLabel("Hátazógép");
+
+        shoulderbtn = new JButton("Helyet foglalok!");
+        shoulderlb = new JLabel("Vállazógép");
+
+        absbtn = new JButton("Helyet foglalok!");
+        abslb = new JLabel("Hasazóép");
+
+        legbtn =  new JButton("Helyet foglalok!");
+        leglb = new JLabel("Lábazógép");
+
+
+        //actionlistenerek a gombokra
+
+        bicepsbtn.addActionListener(new BicepsbtnActLis());
+        tricepsbtn.addActionListener(new TricepsbtnActLis());
+        chestbtn.addActionListener(new ChestbtnActLis());
+        backbtn.addActionListener(new BackbtnActLis());
+        shoulderbtn.addActionListener(new ShoulderbtnActLis());
+        absbtn.addActionListener(new AbsbtnActLis());
+        legbtn.addActionListener(new LegbtnActLis());
+
+
+
+
+
+
+        rightpnl.setLayout(new FlowLayout());
+        //elemek hozzáadása a panelhez
+        rightpnl.add(bicepslb);
+        rightpnl.add(bicepsbtn);
+        rightpnl.add(tricepslb);
+        rightpnl.add(tricepsbtn);
+        rightpnl.add(chestlb);
+        rightpnl.add(chestbtn);
+        rightpnl.add(backlb);
+        rightpnl.add(backbtn);
+        rightpnl.add(shoulderlb);
+        rightpnl.add(shoulderbtn);
+        rightpnl.add(abslb);
+        rightpnl.add(absbtn);
+        rightpnl.add(leglb);
+        rightpnl.add(legbtn);
+
+
     }
+
+    //egy adott
+    private void initstationpnl(){
+
+        statsarea = new JTextArea(5,30);
+        statspnl = new JPanel("Statisztikák:")
+        weighttf = new JTextField();
+        weightlb = new JLabel("Írjon be egy súly:")
+        doexcbtn = new JButton("Csináld")
+
+    }
+
+
 }
