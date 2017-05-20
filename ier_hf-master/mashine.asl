@@ -6,4 +6,4 @@
 
 /* Plans */
 
-+leave_place <- .send(central,tell,refresh).
++leave_place <- refresh;.print("Data saved!").
