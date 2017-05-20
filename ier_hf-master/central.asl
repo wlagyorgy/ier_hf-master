@@ -6,7 +6,7 @@
 
 /* Plans */
 
-+user_in <- .decision.
-+refresh <- .print("Data saved.").
++user_in[source(auth)] <- .decision.
++refresh[source(mashine)] <- .print("Data saved.").
 +let_in <- .print("Authentication successful."); show_buttons.
 +denied <- .print("Authentication failed").
