@@ -6,6 +6,6 @@
 
 /* Plans */
 
-+log_in <- .print("Authentication has begun..."); .send(central, tell, user_in).
++log_in <- .print("Authentication has begun..."); decision.
 +log_out <- set_default;.print("GoodBye!").
 +wrong_id <- delete;.print("Wrong format!").
