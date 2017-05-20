@@ -7,4 +7,4 @@
 /* Plans */
 
 +take_place <- ask_info.
-+leave_place <- refresh.
++leave_place <- .send(central,tell,refresh).
